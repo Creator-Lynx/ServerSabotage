@@ -53,4 +53,18 @@ public class Writer : MonoBehaviour
     }
     #endregion
     //end loading animation block ===========================================================================
+
+    public void PrintMessage(string message)
+    {
+        
+    }
+
+    IEnumerator PrintingMessage(string message)
+    {
+        for (int i = 0; i < message.Length; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        
+    }
 }
