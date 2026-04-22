@@ -1,11 +1,14 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEditorInternal;
 
 public class Writer : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI textMesh;
+    [SerializeField]
+    TerminalManager terminalManager;
 
     //loading animation ===========================================================================
     #region LoadingAnimation
@@ -54,17 +57,17 @@ public class Writer : MonoBehaviour
     #endregion
     //end loading animation block ===========================================================================
 
-    public void PrintMessage(string message)
+    public void PrintMessage(string message, TerminalManager.TerminalState state)
     {
         
     }
 
-    IEnumerator PrintingMessage(string message)
+    IEnumerator PrintingMessage(string message, TerminalManager.TerminalState state)
     {
         for (int i = 0; i < message.Length; i++)
         {
             yield return new WaitForSeconds(0.1f);
         }
-        
+        terminalManager.currentState = state;
     }
 }

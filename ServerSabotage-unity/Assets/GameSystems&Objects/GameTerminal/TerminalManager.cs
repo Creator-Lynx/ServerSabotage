@@ -12,7 +12,7 @@ public class TerminalManager : MonoBehaviour
         passPossible
     }
 
-    TerminalState currentState;
+    public TerminalState currentState;
 
     [SerializeField]
     Writer writer;
