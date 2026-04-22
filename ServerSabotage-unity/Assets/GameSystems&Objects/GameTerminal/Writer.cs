@@ -10,10 +10,8 @@ public class Writer : MonoBehaviour
     [SerializeField]
     TerminalManager terminalManager;
 
-    [SerializeField]
-    AudioSource printAudioSource;
-    [SerializeField]
-    AudioClip printClip;
+    [SerializeField] AudioSource printAudioSource;
+    [SerializeField] AudioClip printClip;
 
     //loading animation ===========================================================================
     #region LoadingAnimation
@@ -63,13 +61,23 @@ public class Writer : MonoBehaviour
     #endregion
     //end loading animation block ===========================================================================
 
+    #region MessagePrinting
     public bool IsWriterReady = true;
     public void PrintMessage(string message, TerminalManager.TerminalState state)
     {
         StartCoroutine(PrintingMessage(message, state));
     }
+    public void PrintRemovableMessage(string message, TerminalManager.TerminalState state)
+    {
+        bufferedText = textMesh.text;
+        StartCoroutine(PrintingMessage(message, state));
+    }
+    public void RestoreTextFromRemovable()
+    {
+        textMesh.text = bufferedText;
+    }
 
-    public IEnumerator PrintingMessage(string message, TerminalManager.TerminalState state)
+    IEnumerator PrintingMessage(string message, TerminalManager.TerminalState state)
     {
         IsWriterReady = false;
         terminalManager.currentState = TerminalManager.TerminalState.performing;
@@ -83,4 +91,5 @@ public class Writer : MonoBehaviour
         terminalManager.currentState = state;
         IsWriterReady = true;;
     }
+    #endregion
 }
