@@ -10,18 +10,24 @@ public class Writer : MonoBehaviour
     [SerializeField]
     TerminalManager terminalManager;
 
+    [SerializeField]
+    AudioSource printAudioSource;
+    [SerializeField]
+    AudioClip printClip;
+
     //loading animation ===========================================================================
     #region LoadingAnimation
     string bufferedText;
     public void StartLoading()
     {
+        terminalManager.currentState = TerminalManager.TerminalState.performing;
         bufferedText = textMesh.text;
         isPerformingLoading = true;
         StartCoroutine(PerformLoading());
-
     }
-    public void EndLoading()
+    public void EndLoading(TerminalManager.TerminalState state)
     {
+        terminalManager.currentState = state;
         isPerformingLoading = false;
         currentLoadingProgress = 0;
         textMesh.text = bufferedText;
@@ -57,17 +63,24 @@ public class Writer : MonoBehaviour
     #endregion
     //end loading animation block ===========================================================================
 
+    public bool IsWriterReady = true;
     public void PrintMessage(string message, TerminalManager.TerminalState state)
     {
-        
+        StartCoroutine(PrintingMessage(message, state));
     }
 
-    IEnumerator PrintingMessage(string message, TerminalManager.TerminalState state)
+    public IEnumerator PrintingMessage(string message, TerminalManager.TerminalState state)
     {
+        IsWriterReady = false;
+        terminalManager.currentState = TerminalManager.TerminalState.performing;
+        textMesh.text += '\n';
         for (int i = 0; i < message.Length; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.04f);
+            textMesh.text += message[i];
+            printAudioSource.PlayOneShot(printClip);
         }
         terminalManager.currentState = state;
+        IsWriterReady = true;;
     }
 }
