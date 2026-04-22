@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TerminalManage : MonoBehaviour
@@ -6,13 +7,17 @@ public class TerminalManage : MonoBehaviour
     {
         input,
         performing,
-        passpossible
+        passPossible
     }
 
     TerminalState currentState;
+
+    [SerializeField]
+    Writer writer;
     void Start()
     {
         currentState = TerminalState.performing;
+        writer.StartLoading();
     }
 
 

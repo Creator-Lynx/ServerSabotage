@@ -460,7 +460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONSOLE TEXT
+  m_text: nfPM OS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -639,6 +639,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 954718845}
+  - component: {fileID: 954718847}
+  - component: {fileID: 954718846}
   m_Layer: 0
   m_Name: pda
   m_TagString: Untagged
@@ -663,6 +665,32 @@ Transform:
   - {fileID: 191887828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -17.012, y: 0, z: 0}
+--- !u!114 &954718846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954718844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bd7db511e7c77418529a8366d97b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Writer
+  textMesh: {fileID: 772770129}
+--- !u!114 &954718847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954718844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaa26d4de1b025478dde7c8700c8bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TerminalManage
+  writer: {fileID: 954718846}
 --- !u!1 &1798280660
 GameObject:
   m_ObjectHideFlags: 0
