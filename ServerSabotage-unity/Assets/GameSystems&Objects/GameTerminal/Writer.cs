@@ -73,10 +73,18 @@ public class Writer : MonoBehaviour
     {
         StartCoroutine(PrintingMessage(message, finalState));
     }
+    public void PrintMomentumMessage(string message, TerminalManager.TerminalState finalState)
+    {
+        textMesh.text += message;
+        printAudioSource.PlayOneShot(printClip);
+        terminalManager.currentState = finalState;
+    }
     public void PrintRemovableMessage(string message, TerminalManager.TerminalState finalState)
     {
         bufferedText = textMesh.text;
-        StartCoroutine(PrintingMessage(message, finalState));
+        textMesh.text += message;
+        printAudioSource.PlayOneShot(printClip);
+        terminalManager.currentState = finalState;
     }
     public void RestoreTextFromRemovable()
     {
