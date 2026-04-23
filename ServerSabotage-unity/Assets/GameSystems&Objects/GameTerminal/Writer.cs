@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEditorInternal;
+
 
 public class Writer : MonoBehaviour
 {
@@ -11,7 +11,13 @@ public class Writer : MonoBehaviour
     TerminalManager terminalManager;
 
     [SerializeField] AudioSource printAudioSource;
+    float standardAudioPitch;
+    [SerializeField] float pitchRandomRange = 0.1f;
     [SerializeField] AudioClip printClip;
+    void Start()
+    {
+        standardAudioPitch = printAudioSource.pitch;
+    }
 
     //loading animation ===========================================================================
     #region LoadingAnimation
@@ -63,32 +69,33 @@ public class Writer : MonoBehaviour
 
     #region MessagePrinting
     public bool IsWriterReady = true;
-    public void PrintMessage(string message, TerminalManager.TerminalState state)
+    public void PrintMessage(string message, TerminalManager.TerminalState finalState)
     {
-        StartCoroutine(PrintingMessage(message, state));
+        StartCoroutine(PrintingMessage(message, finalState));
     }
-    public void PrintRemovableMessage(string message, TerminalManager.TerminalState state)
+    public void PrintRemovableMessage(string message, TerminalManager.TerminalState finalState)
     {
         bufferedText = textMesh.text;
-        StartCoroutine(PrintingMessage(message, state));
+        StartCoroutine(PrintingMessage(message, finalState));
     }
     public void RestoreTextFromRemovable()
     {
         textMesh.text = bufferedText;
     }
 
-    IEnumerator PrintingMessage(string message, TerminalManager.TerminalState state)
+    IEnumerator PrintingMessage(string message, TerminalManager.TerminalState finalState)
     {
         IsWriterReady = false;
         terminalManager.currentState = TerminalManager.TerminalState.performing;
         textMesh.text += '\n';
         for (int i = 0; i < message.Length; i++)
         {
-            yield return new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(0.04f + ((i % 8 == 0) ? 0.04f : 0));
             textMesh.text += message[i];
             printAudioSource.PlayOneShot(printClip);
+            printAudioSource.pitch = standardAudioPitch + ((i % 4 == 0) ? pitchRandomRange : 0);
         }
-        terminalManager.currentState = state;
+        terminalManager.currentState = finalState;
         IsWriterReady = true;;
     }
     #endregion

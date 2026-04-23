@@ -743,6 +743,7 @@ MonoBehaviour:
   textMesh: {fileID: 772770129}
   terminalManager: {fileID: 954718847}
   printAudioSource: {fileID: 954718848}
+  pitchRandomRange: 0.05
   printClip: {fileID: 8300000, guid: 5a177ebbe8933cc4da3d5d684f3f599f, type: 3}
   IsWriterReady: 1
 --- !u!114 &954718847

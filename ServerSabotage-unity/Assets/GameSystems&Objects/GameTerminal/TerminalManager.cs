@@ -46,13 +46,43 @@ public class TerminalManager : MonoBehaviour
     {
         writer.PrintMessage("\n\nPersonal terminal nfPMx16 OS root", TerminalState.performing);
         yield return new WaitUntil(() => writer.IsWriterReady);
+
         writer.StartLoading();
         yield return new WaitForSeconds(3);
         writer.EndLoading(TerminalState.passPossible);
+
         writer.PrintRemovableMessage("\nPRESS ANY KEY", TerminalState.passPossible);
+        yield return new WaitUntil(() => writer.IsWriterReady);
         yield return new WaitUntil(() => isAnyKeyPressed);
         isAnyKeyPressed = false;
         writer.RestoreTextFromRemovable();
+
         writer.StartLoading();
+        yield return new WaitForSeconds(1);
+        for(int i = 0; i < 101; i++)
+        {
+            writer.SetLoadingProgress(i);
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return new WaitForSeconds(0.5f);
+        writer.EndLoading(TerminalState.performing);
+
+        //here a welcome message
+        writer.PrintMessage("\nWelcome, dear user. You are using the interface of the portable terminal system.", TerminalState.performing);
+        yield return new WaitUntil(() => writer.IsWriterReady);
+        writer.PrintRemovableMessage("\nPRESS ANY KEY", TerminalState.passPossible);
+        yield return new WaitUntil(() => writer.IsWriterReady);
+        yield return new WaitUntil(() => isAnyKeyPressed);
+        isAnyKeyPressed = false;
+        writer.RestoreTextFromRemovable();
+
+        writer.PrintMessage("\nThis system is used to connect to stationary terminals, search for connections, signals, and interact with information structures.",
+        TerminalState.performing);
+        yield return new WaitUntil(() => writer.IsWriterReady);
+        writer.PrintRemovableMessage("\nPRESS ANY KEY", TerminalState.passPossible);
+        yield return new WaitUntil(() => writer.IsWriterReady);
+        yield return new WaitUntil(() => isAnyKeyPressed);
+        isAnyKeyPressed = false;
+        writer.RestoreTextFromRemovable();
     }
 }
