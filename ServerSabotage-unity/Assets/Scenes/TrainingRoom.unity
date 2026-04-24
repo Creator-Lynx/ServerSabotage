@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 954718845}
   - component: {fileID: 954718847}
   - component: {fileID: 954718846}
+  - component: {fileID: 954718850}
   - component: {fileID: 954718848}
   - component: {fileID: 954718849}
   m_Layer: 0
@@ -760,8 +761,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerminalManage
   currentState: 0
   writer: {fileID: 954718846}
+  commandReader: {fileID: 954718850}
   stampAudioSource: {fileID: 954718849}
   stampClip: {fileID: 8300000, guid: eaffb1cb4f0d7c4409084943a2c4d762, type: 3}
+  commandBuffer: 
 --- !u!82 &954718848
 AudioSource:
   m_ObjectHideFlags: 0
@@ -956,6 +959,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &954718850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954718844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966b4ef94ee8d4a4dad9d6e0f6276c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComandReader
+  writer: {fileID: 954718846}
 --- !u!1 &1242505390
 GameObject:
   m_ObjectHideFlags: 0

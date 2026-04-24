@@ -15,6 +15,7 @@ public class TerminalManager : MonoBehaviour
     public TerminalState currentState;
 
     [SerializeField] Writer writer;
+    [SerializeField] CommandReader commandReader;
 
     [SerializeField] AudioSource stampAudioSource;
     [SerializeField] AudioClip stampClip;
@@ -112,17 +113,20 @@ public class TerminalManager : MonoBehaviour
     }
     void GotoCommandExecution()
     {
-        //call command reader
-        if(commandBuffer.Length > 0)commandBuffer = commandBuffer.Remove(0);
+        commandReader.Read(commandBuffer);
+        if(commandBuffer.Length > 0) commandBuffer = commandBuffer.Remove(0);
         //call keyboard animation by char
         stampAudioSource.PlayOneShot(stampClip);
-        writer.PrintSymbol('\n');
         writer.PrintSymbol('\n');
     }
 
 
 
     bool isAnyKeyPressed = false;
+    public bool IsAnyKeyPressed
+    {
+        get { return isAnyKeyPressed; }
+    }
 
     IEnumerator FirstLoadingProgram()
     {
