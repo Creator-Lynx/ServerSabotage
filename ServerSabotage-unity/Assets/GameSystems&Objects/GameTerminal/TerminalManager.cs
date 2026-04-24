@@ -93,7 +93,7 @@ public class TerminalManager : MonoBehaviour
         if(Keyboard.current.downArrowKey.wasPressedThisFrame) {} //change last writed command
         if(Keyboard.current.upArrowKey.wasPressedThisFrame) {} //change last writed command
     }
-    string commandBuffer = "";
+    [SerializeField] string commandBuffer = "";
 
     void WriteSymbol(char c)
     {
@@ -108,12 +108,12 @@ public class TerminalManager : MonoBehaviour
         //call keyboard animation by char
         stampAudioSource.PlayOneShot(stampClip);
         if(commandBuffer.Length > 0)
-        commandBuffer.Remove(commandBuffer.Length - 1);
+        commandBuffer = commandBuffer.Remove(commandBuffer.Length - 1);
     }
     void GotoCommandExecution()
     {
         //call command reader
-        commandBuffer.Remove(0);
+        if(commandBuffer.Length > 0)commandBuffer = commandBuffer.Remove(0);
         //call keyboard animation by char
         stampAudioSource.PlayOneShot(stampClip);
         writer.PrintSymbol('\n');

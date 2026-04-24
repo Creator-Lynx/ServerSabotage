@@ -114,7 +114,7 @@ public class Writer : MonoBehaviour
     public void DeleteSymbol()
     {
         if(textMesh.text[textMesh.text.Length-1] == '\n') { Debug.Log("Cannot delete"); return;} 
-        textMesh.text.Remove(textMesh.text.Length-1);
+        textMesh.text = textMesh.text.Remove(textMesh.text.Length-1);
     }
     #endregion
 }
