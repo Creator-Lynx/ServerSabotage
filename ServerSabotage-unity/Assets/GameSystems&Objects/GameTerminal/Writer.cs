@@ -69,9 +69,11 @@ public class Writer : MonoBehaviour
 
     #region MessagePrinting
     public bool IsWriterReady = true;
-    public void PrintMessage(string message, TerminalManager.TerminalState finalState)
+    public void PrintMessage(string message, TerminalManager.TerminalState finalState, PrintSpeed speed = PrintSpeed.standart)
     {
-        StartCoroutine(PrintingMessage(message, finalState));
+        if(speed == PrintSpeed.standart) StartCoroutine(PrintingMessage(message, finalState));
+        if(speed == PrintSpeed.slow) StartCoroutine(PrintingMessageSlow(message, finalState));
+        if(speed == PrintSpeed.fast) StartCoroutine(PrintingMessageFast(message, finalState));
     }
     public void PrintMomentumMessage(string message, TerminalManager.TerminalState finalState)
     {
@@ -91,6 +93,12 @@ public class Writer : MonoBehaviour
         textMesh.text = bufferedText;
     }
 
+    public enum PrintSpeed
+    {
+        slow,
+        standart,
+        fast
+    }
     IEnumerator PrintingMessage(string message, TerminalManager.TerminalState finalState)
     {
         IsWriterReady = false;
@@ -98,10 +106,48 @@ public class Writer : MonoBehaviour
         textMesh.text += '\n';
         for (int i = 0; i < message.Length; i++)
         {
-            yield return new WaitForSeconds(0.04f + ((i % 8 == 0) ? 0.04f : 0));
+            yield return new WaitForSeconds(0.02f + ((i % 8 == 0) ? 0.02f : 0));
+            textMesh.text += message[i];
+            if(i % 3 == 0) printAudioSource.PlayOneShot(printClip);
+            printAudioSource.pitch = standardAudioPitch + ((i % 6 == 0) ? pitchRandomRange : 0);
+        }
+        terminalManager.currentState = finalState;
+        IsWriterReady = true;;
+    }
+    IEnumerator PrintingMessageSlow(string message, TerminalManager.TerminalState finalState)
+    {
+        IsWriterReady = false;
+        terminalManager.currentState = TerminalManager.TerminalState.performing;
+        textMesh.text += '\n';
+        for (int i = 0; i < message.Length; i++)
+        {
+            yield return new WaitForSeconds(0.25f);
             textMesh.text += message[i];
             printAudioSource.PlayOneShot(printClip);
-            printAudioSource.pitch = standardAudioPitch + ((i % 4 == 0) ? pitchRandomRange : 0);
+        }
+        terminalManager.currentState = finalState;
+        IsWriterReady = true;
+    }
+    IEnumerator PrintingMessageFast(string message, TerminalManager.TerminalState finalState)
+    {
+        IsWriterReady = false;
+        terminalManager.currentState = TerminalManager.TerminalState.performing;
+        textMesh.text += '\n';
+        for (int i = 0; i < message.Length; i++)
+        {
+            yield return new WaitForSeconds(0.02f + ((i % 8 == 1) ? 0.01f : 0));
+            textMesh.text += message[i];
+            if(i < message.Length - 1)
+            {
+                i++;
+                textMesh.text += message[i];
+            }
+            if(i % 6 == 1) 
+            {
+                printAudioSource.pitch = standardAudioPitch + ((i % 12 == 0) ? pitchRandomRange : 0);
+                printAudioSource.PlayOneShot(printClip);
+            }
+            
         }
         terminalManager.currentState = finalState;
         IsWriterReady = true;;

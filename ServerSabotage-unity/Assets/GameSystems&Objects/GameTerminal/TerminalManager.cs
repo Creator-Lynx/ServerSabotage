@@ -24,13 +24,13 @@ public class TerminalManager : MonoBehaviour
     void Start()
     {
         currentState = TerminalState.performing;
-        if(PlayerPrefs.GetInt("testIntro", 0) == 0)
+        if(true) //PlayerPrefs.GetInt("testIntro", 0) == 0)
         {
             StartCoroutine(FirstLoadingProgram());
             PlayerPrefs.SetInt("testIntro", 1);
         }
 
-        else writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
+        //else writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
     void Update()
     {
@@ -153,13 +153,14 @@ public class TerminalManager : MonoBehaviour
         for(int i = 0; i < 101; i++)
         {
             writer.SetLoadingProgress(i);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
         yield return new WaitForSeconds(0.5f);
         writer.EndLoading(TerminalState.performing);
 
         //here a welcome message
-        writer.PrintMessage("\nWelcome, dear user. You are using the interface of the portable terminal system.\n", TerminalState.performing);
+        writer.PrintMessage("\nWelcome, dear user. You are using the interface of the portable terminal system.\n", 
+        TerminalState.performing);
         yield return new WaitUntil(() => writer.IsWriterReady);
         writer.PrintRemovableMessage("\nPRESS ANY KEY", TerminalState.passPossible);
         yield return new WaitUntil(() => isAnyKeyPressed);
@@ -184,7 +185,7 @@ public class TerminalManager : MonoBehaviour
 
         //helping message
         writer.PrintMessage("\nHint: To read a message, type the command \"read N\", where N is the message number (0 is the last message).\n", 
-        TerminalState.performing);
+        TerminalState.performing, Writer.PrintSpeed.fast);
         yield return new WaitUntil(() => writer.IsWriterReady);
         writer.PrintMessage("To get help with commands, use \"help\"\n", TerminalState.performing);
         yield return new WaitUntil(() => writer.IsWriterReady);
