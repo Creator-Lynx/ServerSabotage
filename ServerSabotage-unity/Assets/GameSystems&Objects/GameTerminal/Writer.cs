@@ -106,5 +106,15 @@ public class Writer : MonoBehaviour
         terminalManager.currentState = finalState;
         IsWriterReady = true;;
     }
+
+    public void PrintSymbol(char c)
+    {
+        textMesh.text += c;
+    }
+    public void DeleteSymbol()
+    {
+        if(textMesh.text[textMesh.text.Length-1] == '\n') return;
+        textMesh.text.Remove(textMesh.text.Length-1);
+    }
     #endregion
 }

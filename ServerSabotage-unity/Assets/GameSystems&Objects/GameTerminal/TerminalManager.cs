@@ -25,7 +25,6 @@ public class TerminalManager : MonoBehaviour
         currentState = TerminalState.performing;
         StartCoroutine(FirstLoadingProgram());
     }
-
     void Update()
     {
         //if(Keyboard.current.digit1Key.wasPressedThisFrame) writer.SetLoadingProgress(10);
@@ -38,7 +37,18 @@ public class TerminalManager : MonoBehaviour
             stampAudioSource.PlayOneShot(stampClip);
         }
 
+        OperateUserInput();
     }
+
+    void OperateUserInput()
+    {
+        if(currentState == TerminalState.input)
+        {
+            if(Keyboard.current.backspaceKey.wasPressedThisFrame) writer.DeleteSymbol();
+        }
+    }
+
+
 
     bool isAnyKeyPressed = false;
 
@@ -96,6 +106,6 @@ public class TerminalManager : MonoBehaviour
         yield return new WaitUntil(() => writer.IsWriterReady);
         writer.PrintMessage("To get help with commands, use \"help\"\n", TerminalState.performing);
         yield return new WaitUntil(() => writer.IsWriterReady);
-        writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>", TerminalState.input);
+        writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalState.input);
     }
 }
