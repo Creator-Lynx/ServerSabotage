@@ -30,22 +30,94 @@ public class TerminalManager : MonoBehaviour
         //if(Keyboard.current.digit1Key.wasPressedThisFrame) writer.SetLoadingProgress(10);
         //Keyboard.current.on
         
-        if(Keyboard.current.anyKey.wasPressedThisFrame)
+        if(currentState == TerminalState.passPossible)
         {
-            if(currentState == TerminalState.passPossible)
+            if(Keyboard.current.anyKey.wasPressedThisFrame)
+            {
+                stampAudioSource.PlayOneShot(stampClip);
                 isAnyKeyPressed = true;
-            stampAudioSource.PlayOneShot(stampClip);
+            }    
         }
-
-        OperateUserInput();
+        if(currentState == TerminalState.input)
+            OperateUserInput();
     }
 
     void OperateUserInput()
     {
-        if(currentState == TerminalState.input)
-        {
-            if(Keyboard.current.backspaceKey.wasPressedThisFrame) writer.DeleteSymbol();
-        }
+        if(Keyboard.current.backspaceKey.wasPressedThisFrame) DeleteSymbol();
+        if(Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.numpadEnterKey.wasPressedThisFrame) GotoCommandExecution();
+
+        if(Keyboard.current.qKey.wasPressedThisFrame) WriteSymbol('q');
+        if(Keyboard.current.wKey.wasPressedThisFrame) WriteSymbol('w');
+        if(Keyboard.current.eKey.wasPressedThisFrame) WriteSymbol('e');
+        if(Keyboard.current.rKey.wasPressedThisFrame) WriteSymbol('r');
+        if(Keyboard.current.tKey.wasPressedThisFrame) WriteSymbol('t');
+        if(Keyboard.current.yKey.wasPressedThisFrame) WriteSymbol('y');
+        if(Keyboard.current.uKey.wasPressedThisFrame) WriteSymbol('u');
+        if(Keyboard.current.iKey.wasPressedThisFrame) WriteSymbol('i');
+        if(Keyboard.current.oKey.wasPressedThisFrame) WriteSymbol('o');
+        if(Keyboard.current.pKey.wasPressedThisFrame) WriteSymbol('p');
+        if(Keyboard.current.aKey.wasPressedThisFrame) WriteSymbol('a');
+        if(Keyboard.current.sKey.wasPressedThisFrame) WriteSymbol('s');
+        if(Keyboard.current.dKey.wasPressedThisFrame) WriteSymbol('d');
+        if(Keyboard.current.fKey.wasPressedThisFrame) WriteSymbol('f');
+        if(Keyboard.current.gKey.wasPressedThisFrame) WriteSymbol('g');
+        if(Keyboard.current.hKey.wasPressedThisFrame) WriteSymbol('h');
+        if(Keyboard.current.jKey.wasPressedThisFrame) WriteSymbol('j');
+        if(Keyboard.current.kKey.wasPressedThisFrame) WriteSymbol('k');
+        if(Keyboard.current.lKey.wasPressedThisFrame) WriteSymbol('l');
+        if(Keyboard.current.zKey.wasPressedThisFrame) WriteSymbol('z');
+        if(Keyboard.current.xKey.wasPressedThisFrame) WriteSymbol('x');
+        if(Keyboard.current.cKey.wasPressedThisFrame) WriteSymbol('c');
+        if(Keyboard.current.vKey.wasPressedThisFrame) WriteSymbol('v');
+        if(Keyboard.current.bKey.wasPressedThisFrame) WriteSymbol('b');
+        if(Keyboard.current.nKey.wasPressedThisFrame) WriteSymbol('n');
+        if(Keyboard.current.mKey.wasPressedThisFrame) WriteSymbol('m');
+
+        if(Keyboard.current.digit0Key.wasPressedThisFrame || Keyboard.current.numpad0Key.wasPressedThisFrame) WriteSymbol('0');
+        if(Keyboard.current.digit1Key.wasPressedThisFrame || Keyboard.current.numpad1Key.wasPressedThisFrame) WriteSymbol('1');
+        if(Keyboard.current.digit2Key.wasPressedThisFrame || Keyboard.current.numpad2Key.wasPressedThisFrame) WriteSymbol('2');
+        if(Keyboard.current.digit3Key.wasPressedThisFrame || Keyboard.current.numpad3Key.wasPressedThisFrame) WriteSymbol('3');
+        if(Keyboard.current.digit4Key.wasPressedThisFrame || Keyboard.current.numpad4Key.wasPressedThisFrame) WriteSymbol('4');
+        if(Keyboard.current.digit5Key.wasPressedThisFrame || Keyboard.current.numpad5Key.wasPressedThisFrame) WriteSymbol('5');
+        if(Keyboard.current.digit6Key.wasPressedThisFrame || Keyboard.current.numpad6Key.wasPressedThisFrame) WriteSymbol('6');
+        if(Keyboard.current.digit7Key.wasPressedThisFrame || Keyboard.current.numpad7Key.wasPressedThisFrame) WriteSymbol('7');
+        if(Keyboard.current.digit8Key.wasPressedThisFrame || Keyboard.current.numpad8Key.wasPressedThisFrame) WriteSymbol('8');
+        if(Keyboard.current.digit9Key.wasPressedThisFrame || Keyboard.current.numpad9Key.wasPressedThisFrame) WriteSymbol('9');
+
+        if(Keyboard.current.commaKey.wasPressedThisFrame) WriteSymbol(',');
+        if(Keyboard.current.minusKey.wasPressedThisFrame) WriteSymbol('-');
+        if(Keyboard.current.periodKey.wasPressedThisFrame) WriteSymbol('.');
+        if(Keyboard.current.spaceKey.wasPressedThisFrame) WriteSymbol(' ');
+
+        if(Keyboard.current.downArrowKey.wasPressedThisFrame) {} //change last writed command
+        if(Keyboard.current.upArrowKey.wasPressedThisFrame) {} //change last writed command
+    }
+    string commandBuffer = "";
+
+    void WriteSymbol(char c)
+    {
+        writer.PrintSymbol(c);
+        //call keyboard animation by char
+        stampAudioSource.PlayOneShot(stampClip);
+        commandBuffer += c;
+    }
+    void DeleteSymbol()
+    {
+        writer.DeleteSymbol();
+        //call keyboard animation by char
+        stampAudioSource.PlayOneShot(stampClip);
+        if(commandBuffer.Length > 0)
+        commandBuffer.Remove(commandBuffer.Length - 1);
+    }
+    void GotoCommandExecution()
+    {
+        //call command reader
+        commandBuffer.Remove(0);
+        //call keyboard animation by char
+        stampAudioSource.PlayOneShot(stampClip);
+        writer.PrintSymbol('\n');
+        writer.PrintSymbol('\n');
     }
 
 
