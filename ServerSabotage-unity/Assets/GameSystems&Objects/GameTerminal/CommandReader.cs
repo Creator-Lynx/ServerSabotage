@@ -23,15 +23,25 @@ public class CommandReader : MonoBehaviour
 
     IEnumerator FunFunction()
     {
-        writer.PrintMessage("\nЗдарова Кит и Кабачок. Это тестовый билд чисто посмотреть на консоль. Пока не существует большого количества команд, интеракций и тому подобного. Черканите мне в телегу, приколько ли это вся херня ощущается. \nЗ.Ы. по сути, так и будет начинаться игра, это вроде меню.", 
-        TerminalManager.TerminalState.performing);
+        if(PlayerPrefs.GetInt("testFirstFun", 0) == 0)
+        {
+            writer.PrintMessage("\nЗдарова Кит и Кабачок. Это тестовый билд чисто посмотреть на консоль. Пока не существует большого количества команд, интеракций и тому подобного. Черканите мне в телегу, приколько ли это вся херня ощущается. \nЗ.Ы. по сути, так и будет начинаться игра, это вроде меню.", 
+            TerminalManager.TerminalState.performing);
+            PlayerPrefs.SetInt("testFirstFun", 1);
+        }
+        else
+        {
+            writer.PrintMessage(Anek.GetAnek(), TerminalManager.TerminalState.performing);
+        }
+        
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
 
     IEnumerator PrintHelp()
     {
-        writer.PrintMessage("\nNow we have only HELP function", TerminalManager.TerminalState.performing);
+        writer.PrintMessage("\nHELP shows the command list\nFUN is a special fun-function for my chumbas. Can be use multiple times.", 
+        TerminalManager.TerminalState.performing);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }

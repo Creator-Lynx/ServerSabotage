@@ -24,7 +24,13 @@ public class TerminalManager : MonoBehaviour
     void Start()
     {
         currentState = TerminalState.performing;
-        StartCoroutine(FirstLoadingProgram());
+        if(PlayerPrefs.GetInt("testIntro", 0) == 0)
+        {
+            StartCoroutine(FirstLoadingProgram());
+            PlayerPrefs.SetInt("testIntro", 1);
+        }
+
+        else writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
     void Update()
     {
@@ -184,4 +190,5 @@ public class TerminalManager : MonoBehaviour
         yield return new WaitUntil(() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalState.input);
     }
+
 }
