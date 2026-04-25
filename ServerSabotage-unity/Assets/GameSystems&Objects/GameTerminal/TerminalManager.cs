@@ -131,7 +131,12 @@ public class TerminalManager : MonoBehaviour
     bool isAnyKeyPressed = false;
     public bool IsAnyKeyPressed
     {
-        get { return isAnyKeyPressed; }
+        get 
+        { 
+            bool tmp = isAnyKeyPressed;
+            isAnyKeyPressed = false; 
+            return tmp;
+        }
     }
 
     IEnumerator FirstLoadingProgram()

@@ -56,8 +56,11 @@ public class CommandReader : MonoBehaviour
     }
     IEnumerator PrintHelp()
     {
-        writer.PrintMessage("\nHELP shows the command list\n", 
+        writer.PrintMessage("\nHELP — shows the command list", 
         TerminalManager.TerminalState.performing);
+        yield return new WaitUntil (() => writer.IsWriterReady);
+        writer.PrintMessage("\n\nREAD n — reads messages received on the device via the operating system. N is a number of message, from last recieved (0) to the earliest. Example of use: <color=white>read 1</color>", 
+        TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
