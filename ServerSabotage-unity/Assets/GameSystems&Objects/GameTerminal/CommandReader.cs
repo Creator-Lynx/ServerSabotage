@@ -87,7 +87,7 @@ public class CommandReader : MonoBehaviour
     }
     IEnumerator InvalidArgumentsReaderReaction(string command, string argumentType)
     {
-        writer.PrintMessage("\nInvalid argument. Command\n" + "<color=white>" + command.ToUpper() + "</color>" + "\ntakes only " + argumentType + "type.", 
+        writer.PrintMessage("\nInvalid argument. Command\n" + "<color=white>" + command.ToUpper() + "</color>" + "\ntakes only " + argumentType + " type.", 
         TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
