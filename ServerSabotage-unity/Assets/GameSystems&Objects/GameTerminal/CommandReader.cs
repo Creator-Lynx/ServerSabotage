@@ -18,17 +18,19 @@ public class CommandReader : MonoBehaviour
             StartCoroutine(FunFunction());
             return;
         }
+       
         string[] splittedCommand = command.Split(new char[]{' '}, System.StringSplitOptions.RemoveEmptyEntries);
         if(splittedCommand.Length == 0)
         {
             StartCoroutine(UnknownCommandReaderReaction()); 
             return;
         }
+        
         if(splittedCommand[0].CompareTo("read") == 0)
         {
             if(splittedCommand.Length != 2)
             {
-                InvalidArgumentsNumberReaderReaction("read", 1);
+                StartCoroutine(InvalidArgumentsNumberReaderReaction("read", 1));
                 return;
             }
             if(int.TryParse(splittedCommand[1], out int result))
@@ -38,12 +40,10 @@ public class CommandReader : MonoBehaviour
             }
             else
             {
-                InvalidArgumentsReaderReaction("read", "integer");
+                StartCoroutine(InvalidArgumentsReaderReaction("read", "integer"));
                 return;
             }
-
         }  
-
         StartCoroutine(UnknownCommandReaderReaction()); 
     }
 
@@ -76,14 +76,15 @@ public class CommandReader : MonoBehaviour
     }
     IEnumerator InvalidArgumentsNumberReaderReaction(string command, int arguments)
     {
-        writer.PrintMessage("\nThere is too much or not enough arguments, command\n" + command + "\n takes up to " + arguments + " arguments.", 
+        writer.PrintMessage("\nThere is too much or not enough arguments, command\n" + "<color=white>" + command.ToUpper() + "</color>" + 
+        "\ntakes up to " + arguments + " arguments.", 
         TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
     IEnumerator InvalidArgumentsReaderReaction(string command, string argumentType)
     {
-        writer.PrintMessage("\nInvalid argument. Command\n" + command + "\n takes only " + argumentType, 
+        writer.PrintMessage("\nInvalid argument. Command\n" + "<color=white>" + command.ToUpper() + "</color>" + "\ntakes only " + argumentType + "type.", 
         TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);

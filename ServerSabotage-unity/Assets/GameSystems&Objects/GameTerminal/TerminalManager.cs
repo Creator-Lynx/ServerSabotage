@@ -24,13 +24,13 @@ public class TerminalManager : MonoBehaviour
     void Start()
     {
         currentState = TerminalState.performing;
-        if(true) //PlayerPrefs.GetInt("testIntro", 0) == 0)
+        if(PlayerPrefs.GetInt("testIntro", 0) == 0)
         {
             StartCoroutine(FirstLoadingProgram());
             PlayerPrefs.SetInt("testIntro", 1);
         }
 
-        //else writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
+        else writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
     void Update()
     {
