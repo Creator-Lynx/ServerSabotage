@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerSoundsOperator))]
 public class PlayerController : MonoBehaviour
 {
     //redisign
@@ -11,7 +10,6 @@ public class PlayerController : MonoBehaviour
 
     //basics
     CharacterController _characterController;
-    PlayerSoundsOperator _sounds;
     [SerializeField] Transform _cameraTransform;
     InputAction moveAction;
     InputAction jumpAction;
@@ -47,7 +45,6 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        _sounds = GetComponent<PlayerSoundsOperator>();
 
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
@@ -80,7 +77,7 @@ public class PlayerController : MonoBehaviour
     Vector2 smoothVelocity4Movement;
     bool isWanna2Jump = false;
     float inAirTime = 0f;
-    float inAirTimeThreshold = 0.1f;
+    //float inAirTimeThreshold = 0.1f;
     void Moving()
     {
         //reading input and applying airControl
@@ -92,11 +89,10 @@ public class PlayerController : MonoBehaviour
                 moveVector2Input, moveAction.ReadValue<Vector2>(),
                 ref smoothVelocity4Movement, movementSmooth);
             originMovement4Jump = moveVector2Input;
-            if(moveAction.IsInProgress()) _sounds.SetWalkingSound(true);
-            else _sounds.SetWalkingSound(false);
+
 
             //landing sound
-            if(inAirTime > inAirTimeThreshold) _sounds.SetLanded();
+            //if(inAirTime > inAirTimeThreshold) _sounds.SetLanded();
             inAirTime = 0f;
         }
         else
@@ -106,8 +102,7 @@ public class PlayerController : MonoBehaviour
                 moveVector2Input = Vector2.Lerp(
                     originMovement4Jump, moveAction.ReadValue<Vector2>(), airControl);
 
-            //sounds
-            _sounds.SetWalkingSound(false);
+
             //landing sound
             inAirTime += Time.deltaTime;
         }
@@ -128,8 +123,6 @@ public class PlayerController : MonoBehaviour
             originMovement4Jump = moveVector2Input;
             isWanna2Jump = false;
 
-            //contact to sound system
-            _sounds.StartJump();
         }
             
         //gravity applied 

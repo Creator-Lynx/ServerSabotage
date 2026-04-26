@@ -1,6 +1,6 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CommandReader : MonoBehaviour
 {
@@ -16,6 +16,16 @@ public class CommandReader : MonoBehaviour
         if(string.Compare(command, "fun") == 0)
         {
             StartCoroutine(FunFunction());
+            return;
+        }
+        if(string.Compare(command, "start") == 0)
+        {
+            SceneManager.LoadScene("TrainingRoom");
+            return;
+        }
+        if(string.Compare(command, "exit") == 0)
+        {
+            Application.Quit();
             return;
         }
        
@@ -56,10 +66,16 @@ public class CommandReader : MonoBehaviour
     }
     IEnumerator PrintHelp()
     {
-        writer.PrintMessage("\nHELP — shows the command list", 
+        writer.PrintMessage("<color=white>HELP</color> — shows the command list", 
         TerminalManager.TerminalState.performing);
         yield return new WaitUntil (() => writer.IsWriterReady);
-        writer.PrintMessage("\n\nREAD n — reads messages received on the device via the operating system. N is a number of message, from last recieved (0) to the earliest. Example of use: <color=white>read 1</color>", 
+        writer.PrintMessage("\n<color=white>READ n</color> — reads messages received on the device via the operating system. N is a number of message, from last recieved (0) to the earliest. Example of use: <color=white>read 1</color>", 
+        TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
+        yield return new WaitUntil (() => writer.IsWriterReady);
+        writer.PrintMessage("\n<color=red>START</color> — starts a training of a party.", 
+        TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
+        yield return new WaitUntil (() => writer.IsWriterReady);
+        writer.PrintMessage("\n<color=red>EXIT</color> — exits the application.", 
         TerminalManager.TerminalState.performing, Writer.PrintSpeed.fast);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
@@ -67,7 +83,7 @@ public class CommandReader : MonoBehaviour
 
     IEnumerator UnknownCommandReaderReaction()
     {
-        writer.PrintMessage("\nUnknown command. Use \"help\" to see accessible command list.", TerminalManager.TerminalState.performing);
+        writer.PrintMessage("Unknown command. Use <color=white>HELP</color> to see accessible command list.", TerminalManager.TerminalState.performing);
         yield return new WaitUntil (() => writer.IsWriterReady);
         writer.PrintMomentumMessage("\n\n<color=#ff00ffff>Personal terminal nfPMx16 OS root</color>\n", TerminalManager.TerminalState.input);
     }
