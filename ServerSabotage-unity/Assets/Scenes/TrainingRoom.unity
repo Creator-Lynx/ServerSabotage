@@ -1255,18 +1255,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 508629014165870263, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 508629014165870263, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240015071223865948, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: lookSmoothing
-      value: 0.002
-      objectReference: {fileID: 0}
     - target: {fileID: 3417718331744399872, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.299753
@@ -1307,50 +1295,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.FieldOfView
-      value: 54.536438
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.ModeOverride
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.PhysicalProperties.GateFit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.PhysicalProperties.SensorSize.x
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.PhysicalProperties.SensorSize.y
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.PhysicalProperties.FocusDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5601321439186221532, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5605130443918369944, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
       propertyPath: m_Name
       value: PLAYER
       objectReference: {fileID: 0}
-    - target: {fileID: 7184045983731175855, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: m_Radius
-      value: 0.4
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6481877061320024416, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 1872782263005463720, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
