@@ -6,6 +6,8 @@ public class ShootingController : MonoBehaviour
     InputAction fire;
     [SerializeField] Animator shotgunAnimator;
     int cachedFireTrigger;
+    [SerializeField] AudioSource shotAudioSource;
+    [SerializeField] AudioClip shotAudioClip;
 
     void Awake()
     {
@@ -14,6 +16,10 @@ public class ShootingController : MonoBehaviour
     }
     void Update()
     {
-        if(fire.WasPressedThisFrame()) shotgunAnimator.SetTrigger(cachedFireTrigger);
+        if(fire.WasPressedThisFrame()) 
+        {
+            shotgunAnimator.SetTrigger(cachedFireTrigger);
+            shotAudioSource.PlayOneShot(shotAudioClip);
+        }
     }
 }
