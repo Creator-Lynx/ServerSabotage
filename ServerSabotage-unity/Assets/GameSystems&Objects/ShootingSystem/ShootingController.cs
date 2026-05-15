@@ -8,6 +8,7 @@ public class ShootingController : MonoBehaviour
     int cachedFireTrigger;
     [SerializeField] AudioSource shotAudioSource;
     [SerializeField] AudioClip shotAudioClip;
+    public static bool WeaponReady = true;
 
     void Awake()
     {
@@ -16,10 +17,12 @@ public class ShootingController : MonoBehaviour
     }
     void Update()
     {
+        if(WeaponReady)
         if(fire.WasPressedThisFrame()) 
         {
             shotgunAnimator.SetTrigger(cachedFireTrigger);
             shotAudioSource.PlayOneShot(shotAudioClip);
+            WeaponReady = false;
         }
     }
 }
