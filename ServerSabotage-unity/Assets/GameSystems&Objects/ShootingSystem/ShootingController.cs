@@ -3,26 +3,34 @@ using UnityEngine.InputSystem;
 
 public class ShootingController : MonoBehaviour
 {
-    InputAction fire;
+    InputAction fireAction;
     [SerializeField] Animator shotgunAnimator;
-    int cachedFireTrigger;
+    int cachedFireTrigger, cachedMoveBool;
     [SerializeField] AudioSource shotAudioSource;
     [SerializeField] AudioClip shotAudioClip;
     public static bool WeaponReady = true;
 
+    InputAction moveAction;
+
     void Awake()
     {
-        fire = InputSystem.actions.FindAction("Fire");
+        fireAction = InputSystem.actions.FindAction("Fire");
         cachedFireTrigger = Animator.StringToHash("Shot");
+        cachedMoveBool = Animator.StringToHash("IsWalk");
+        moveAction = InputSystem.actions.FindAction("Move");
     }
     void Update()
     {
         if(WeaponReady)
-        if(fire.WasPressedThisFrame()) 
+        if(fireAction.WasPressedThisFrame()) 
         {
             shotgunAnimator.SetTrigger(cachedFireTrigger);
             shotAudioSource.PlayOneShot(shotAudioClip);
             WeaponReady = false;
         }
+
+
+        shotgunAnimator.SetBool(cachedMoveBool, moveAction.inProgress);
+
     }
 }
