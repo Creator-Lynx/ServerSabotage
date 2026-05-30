@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (jumpAction.WasPressedThisFrame()) StartCoroutine(JumpInputCorutine());
+        //if (jumpAction.WasPressedThisFrame()) StartCoroutine(JumpInputCorutine());
 
         Looking();
         Moving();
