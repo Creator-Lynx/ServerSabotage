@@ -370,7 +370,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 617e0dc59d3e3d74891fa773d659b10c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.343
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -533,7 +533,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6a61bb389a0e5804b8b24db93808918b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.141
+  m_Volume: 0.184
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1089,6 +1089,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWalkSounds
   stepSource: {fileID: 8924774307354418519}
   stepClip: {fileID: 8300000, guid: 617e0dc59d3e3d74891fa773d659b10c, type: 3}
+  leftStepStepPitch: 1
+  rigthStepPitch: 1.1
   weaponClang0Source: {fileID: 9209839291721550106}
   weaponClang0Clip: {fileID: 8300000, guid: 3262c0fc99ef100439a8d77c643bec38, type: 3}
   weaponClang1Clip: {fileID: 8300000, guid: d0b7c3cc3a3360a43a01971ad332ab2f, type: 3}
