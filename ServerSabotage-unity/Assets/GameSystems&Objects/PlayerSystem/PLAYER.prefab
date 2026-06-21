@@ -335,7 +335,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2153096505223667156}
   - component: {fileID: 8924774307354418519}
-  - component: {fileID: 7294812680092189557}
   m_Layer: 0
   m_Name: StepSound
   m_TagString: Untagged
@@ -446,31 +445,6 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!169 &7294812680092189557
-AudioLowPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209348158107193040}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.22727273
       inSlope: 0
       outSlope: 0
       tangentMode: 0
