@@ -1295,17 +1295,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3839568383172135926, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: Lens.FieldOfView
-      value: 54.184147
-      objectReference: {fileID: 0}
     - target: {fileID: 5605130443918369944, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
       propertyPath: m_Name
       value: PLAYER
-      objectReference: {fileID: 0}
-    - target: {fileID: 8924774307354418519, guid: ad519ec3c30210245bb28a385f0e8870, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

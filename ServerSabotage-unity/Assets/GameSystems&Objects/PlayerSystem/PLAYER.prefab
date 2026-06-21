@@ -138,7 +138,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126014738874302689}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -1286565771966912732, guid: 806f408658b660545ab0c9c0daca22a0, type: 2}
   m_audioClip: {fileID: 0}
@@ -235,7 +235,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126014738874302689}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -1286565771966912732, guid: 806f408658b660545ab0c9c0daca22a0, type: 2}
   m_audioClip: {fileID: 0}
@@ -414,7 +414,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 54.536438
+    FieldOfView: 54.184147
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1000
@@ -1039,6 +1039,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f4006592214de8548aa9fca89362b705, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2961886322490328735}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f4006592214de8548aa9fca89362b705, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6998686499094971039}
   m_SourcePrefab: {fileID: 100100000, guid: f4006592214de8548aa9fca89362b705, type: 3}
 --- !u!4 &1524279810260275119 stripped
 Transform:
@@ -1072,3 +1075,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6998686499094971039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192273103729284373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc76834852f2bf498158024b5eca6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWalkSounds
+  stepSource: {fileID: 8924774307354418519}
+  stepClip: {fileID: 8300000, guid: 617e0dc59d3e3d74891fa773d659b10c, type: 3}
+  weaponClang0Source: {fileID: 9209839291721550106}
+  weaponClang0Clip: {fileID: 8300000, guid: 3262c0fc99ef100439a8d77c643bec38, type: 3}
+  weaponClang1Clip: {fileID: 8300000, guid: d0b7c3cc3a3360a43a01971ad332ab2f, type: 3}
+  weaponClang2Clip: {fileID: 8300000, guid: 9882cfcc184d9cb47b0d0a92dd144753, type: 3}
