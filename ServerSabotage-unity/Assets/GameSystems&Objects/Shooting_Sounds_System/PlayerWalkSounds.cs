@@ -5,6 +5,8 @@ public class PlayerWalkSounds : MonoBehaviour
     [Header("Step sound variant")]
     [SerializeField] AudioSource stepSource;
     [SerializeField] AudioClip stepClip;
+    [SerializeField] float leftStepStepPitch = 1f;
+    [SerializeField] float rigthStepPitch = 1.1f;
 
     [Header("Clang Sounds Variants")]
     [SerializeField] AudioSource weaponClang0Source;
@@ -17,11 +19,13 @@ public class PlayerWalkSounds : MonoBehaviour
 
     public void LeftStep()
     {
-        Debug.Log("LeftStep");
+        stepSource.pitch = leftStepStepPitch;
+        stepSource.PlayOneShot(stepClip);
     }
 
     public void RightStep()
     {
-        Debug.Log("RightStep");
+        stepSource.pitch = rigthStepPitch;
+        stepSource.PlayOneShot(stepClip);
     }
 }
