@@ -635,6 +635,7 @@ MonoBehaviour:
   gravityValue: -30
   jumpHeight: 1.2
   jumpDelay: 0.2
+  moveMagnitudeThreshold: 0.1
 --- !u!1 &8378088306515681728
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +684,7 @@ MonoBehaviour:
   shotgunAnimator: {fileID: 2961886322490328735}
   shotAudioSource: {fileID: 6408562671297232827}
   shotAudioClip: {fileID: 8300000, guid: 6a61bb389a0e5804b8b24db93808918b, type: 3}
+  playerController: {fileID: 1240015071223865948}
 --- !u!1 &9182195909374628916
 GameObject:
   m_ObjectHideFlags: 0
