@@ -1,3 +1,4 @@
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,8 @@ public class ShootingInputController : MonoBehaviour
     [SerializeField] AudioClip shotAudioClip;
     public static bool WeaponReady = true;
 
-    [SerializeField] PlayerController playerController;
+    [SerializeField] float movingMagnitudeThreshold = 0.08f;
+    [SerializeField] CharacterController characterController;
 
     InputAction moveAction;
 
@@ -31,8 +33,10 @@ public class ShootingInputController : MonoBehaviour
             WeaponReady = false;
         }
 
+        Vector3 horizontalMoving = characterController.velocity;
+        horizontalMoving.y = 0;
+        shotgunAnimator.SetBool(cachedMoveBool, horizontalMoving.magnitude >= movingMagnitudeThreshold);
 
-        shotgunAnimator.SetBool(cachedMoveBool, playerController.moveMagnitudePassed);
-
+        float verticalSpeed = characterController.velocity.y; //use later for vertical speed to implify animations and sounds
     }
 }

@@ -73,20 +73,6 @@ public class PlayerController : MonoBehaviour
 
     float _yAxisVelocity;
     Vector2 moveVector2Input;
-    [Header("bool for animate")]
-    [SerializeField] float moveMagnitudeThreshold = 0.1f;
-    public bool moveMagnitudePassed
-    {
-        get
-        {
-            return moveVector2Input.magnitude > moveMagnitudeThreshold;
-        }
-
-        private set
-        {
-            
-        }
-    }
     Vector2 originMovement4Jump = Vector2.up;
     Vector2 smoothVelocity4Movement;
     bool isWanna2Jump = false;
