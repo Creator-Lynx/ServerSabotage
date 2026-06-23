@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShootingController : MonoBehaviour
+public class ShootingInputController : MonoBehaviour
 {
     InputAction fireAction;
     [SerializeField] Animator shotgunAnimator;
@@ -9,6 +9,8 @@ public class ShootingController : MonoBehaviour
     [SerializeField] AudioSource shotAudioSource;
     [SerializeField] AudioClip shotAudioClip;
     public static bool WeaponReady = true;
+
+    [SerializeField] PlayerController playerController;
 
     InputAction moveAction;
 
@@ -30,7 +32,7 @@ public class ShootingController : MonoBehaviour
         }
 
 
-        shotgunAnimator.SetBool(cachedMoveBool, moveAction.inProgress);
+        shotgunAnimator.SetBool(cachedMoveBool, playerController.moveMagnitudePassed);
 
     }
 }
