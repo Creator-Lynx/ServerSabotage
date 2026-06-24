@@ -360,6 +360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a56e30140e3d27428bde49348dbcb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponInertAnimation
+  cameraTransform: {fileID: 9019778029206946165}
+  smoothing: 0
+  extremumRotation: {x: 0, y: 0}
+  extremumShift: {x: 0, y: 0}
+  deltaRotation: {x: 0, y: 0}
 --- !u!1 &4487987656033745583
 GameObject:
   m_ObjectHideFlags: 0
